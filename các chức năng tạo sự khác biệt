@@ -1,0 +1,128 @@
+# Cafe Manager – Các chức năng khác biệt
+
+## 1. Giới thiệu
+
+Cafe Manager là hệ thống quản lý quán cà phê, hỗ trợ khách hàng gọi món trực tuyến và giúp nhân viên quản lý đơn hàng, nguyên liệu, thời gian phục vụ và chương trình khách hàng thân thiết.
+
+Ngoài các chức năng cơ bản như quản lý thực đơn, bàn, đơn hàng, thanh toán và nhân viên, dự án hướng tới các chức năng nâng cao nhằm cải thiện trải nghiệm khách hàng và hiệu quả vận hành của quán.
+
+## 2. Danh sách chức năng khác biệt
+
+### 2.1. Tùy chỉnh và lưu công thức đồ uống cá nhân
+
+**Mục tiêu:** Cho phép khách hàng tự điều chỉnh đồ uống theo sở thích và lưu lại công thức để sử dụng cho những lần đặt hàng sau.
+
+**Chức năng chính:**
+- Tùy chỉnh size đồ uống.
+- Điều chỉnh lượng đường, đá, sữa và topping.
+- Tự động tính giá theo các tùy chọn.
+- Kiểm tra các lựa chọn phù hợp với từng loại đồ uống.
+- Lưu công thức yêu thích vào tài khoản.
+- Đặt lại đồ uống bằng công thức đã lưu.
+
+**Ví dụ:** Khách hàng tạo công thức trà sữa size L, 30% đường, ít đá và thêm trân châu. Lần sau, khách có thể chọn lại công thức mà không cần thiết lập từ đầu.
+
+**Giá trị mang lại:** Cá nhân hóa trải nghiệm khách hàng, tiết kiệm thời gian gọi món và tăng khả năng khách quay lại.
+
+### 2.2. Dự đoán thời gian chờ nhận đồ uống
+
+**Mục tiêu:** Ước tính thời gian khách phải chờ dựa trên số đơn đang xử lý và thời gian pha chế dự kiến.
+
+**Chức năng chính:**
+- Theo dõi số lượng đơn đang chờ.
+- Ghi nhận thời điểm bắt đầu và hoàn thành pha chế.
+- Ước tính thời gian hoàn thành đơn.
+- Hiển thị thời gian dự kiến cho khách hàng.
+- Cập nhật trạng thái đơn: Chờ xác nhận, Đang pha chế, Sẵn sàng nhận và Hoàn tất.
+- Cảnh báo nhân viên khi đơn bị chậm so với dự kiến.
+
+**Ví dụ:** Khi khách đặt hai ly đồ uống, hệ thống dự kiến đơn sẽ hoàn thành trong khoảng 8 phút dựa trên tình trạng hàng đợi hiện tại.
+
+**Giá trị mang lại:** Giúp khách chủ động thời gian, giảm việc hỏi nhân viên và hỗ trợ quán điều phối đơn hàng.
+
+**Hướng triển khai:** Phiên bản đầu sử dụng thời gian pha chế trung bình và số đơn đang chờ. Khi có đủ dữ liệu, hệ thống có thể cải thiện phương pháp dự báo.
+
+### 2.3. Chương trình khách hàng thân thiết theo thói quen
+
+**Mục tiêu:** Tạo chương trình tích điểm và ưu đãi dựa trên lịch sử mua hàng của khách.
+
+**Chức năng chính:**
+- Tích điểm sau mỗi giao dịch hợp lệ.
+- Theo dõi lịch sử mua hàng.
+- Quản lý cấp độ thành viên.
+- Đổi điểm lấy ưu đãi theo quy định của quán.
+- Gợi ý ưu đãi theo nhóm món khách thường mua.
+- Thông báo khi khách đủ điểm đổi quà hoặc sắp đạt cấp độ mới.
+
+**Ví dụ:** Khách thường mua cà phê vào buổi sáng. Hệ thống có thể cung cấp ưu đãi cho nhóm cà phê trong khung giờ phù hợp nếu chương trình khuyến mãi cho phép.
+
+**Giá trị mang lại:** Khuyến khích khách quay lại, tăng mức độ gắn bó và hỗ trợ quán xây dựng chương trình khuyến mãi hiệu quả.
+
+**Lưu ý:** Việc sử dụng lịch sử mua hàng cần tuân thủ chính sách bảo vệ dữ liệu khách hàng của hệ thống.
+
+### 2.4. Quản lý nguyên liệu và đề xuất nhập hàng
+
+**Mục tiêu:** Theo dõi lượng nguyên liệu tiêu thụ và dự đoán khi nào quán cần bổ sung nguyên liệu.
+
+**Chức năng chính:**
+- Quản lý danh sách nguyên liệu và đơn vị tính.
+- Thiết lập định lượng nguyên liệu cho từng công thức.
+- Cập nhật tồn kho khi đơn hàng hoàn tất theo quy tắc nghiệp vụ.
+- Cảnh báo khi nguyên liệu xuống dưới mức tối thiểu.
+- Ước tính số ly còn có thể pha từ lượng nguyên liệu hiện có.
+- Đề xuất số lượng nhập dựa trên mức tồn kho và tốc độ tiêu thụ.
+- Theo dõi lịch sử nhập, xuất và điều chỉnh kho.
+
+**Ví dụ:** Quán còn 2 lít sữa, mỗi ly sử dụng 100 ml. Hệ thống ước tính lượng sữa này đủ cho tối đa 20 ly theo công thức đã thiết lập, chưa tính hao hụt hoặc các món sử dụng chung nguyên liệu.
+
+**Giá trị mang lại:** Hạn chế thiếu nguyên liệu trong giờ cao điểm, giảm tồn kho dư thừa và hỗ trợ lập kế hoạch nhập hàng.
+
+### 2.5. Gọi món và theo dõi phục vụ qua mã QR
+
+**Mục tiêu:** Giúp khách gọi món tại bàn bằng điện thoại mà không cần cài đặt ứng dụng riêng.
+
+**Chức năng chính:**
+- Mỗi bàn có một mã QR riêng.
+- Khách quét mã để mở thực đơn.
+- Hệ thống nhận diện bàn từ mã QR.
+- Khách thêm món, ghi chú và gửi đơn.
+- Khách theo dõi trạng thái chế biến.
+- Cho phép gọi thêm món trong cùng phiên phục vụ.
+- Nhân viên quản lý các đơn theo từng bàn.
+
+**Ví dụ:** Khách tại bàn B02 quét mã QR, gọi hai ly cà phê và theo dõi trạng thái đơn ngay trên điện thoại.
+
+**Giá trị mang lại:** Giảm thời gian chờ gọi nhân viên, hạn chế nhầm bàn và hỗ trợ quán phục vụ nhiều khách hơn.
+
+**Yêu cầu bảo vệ hệ thống:** Mã QR không được cho phép người lạ truy cập dữ liệu quản trị hoặc sửa thông tin thanh toán. Các thao tác quan trọng phải được xác thực ở phía máy chủ.
+
+### 2.6. Chương trình điểm thưởng xanh
+
+**Mục tiêu:** Khuyến khích khách hàng lựa chọn các hình thức tiêu dùng thân thiện với môi trường.
+
+**Chức năng chính:**
+- Ghi nhận khách sử dụng cốc cá nhân.
+- Thiết lập điểm thưởng cho các hành động được quán chấp nhận.
+- Quản lý lịch sử cộng và sử dụng điểm.
+- Đổi điểm lấy ưu đãi.
+- Thống kê số lượt khách sử dụng cốc cá nhân.
+- Hiển thị kết quả hoạt động xanh của quán.
+
+**Ví dụ:** Quán quy định khách sử dụng cốc cá nhân được cộng 5 điểm cho mỗi giao dịch đủ điều kiện.
+
+**Giá trị mang lại:** Tạo điểm khác biệt cho thương hiệu, khuyến khích khách quay lại và nâng cao ý thức giảm rác thải.
+
+**Lưu ý:** Điểm thưởng, điều kiện nhận điểm và giới hạn sử dụng cần do quán thiết lập rõ ràng.
+
+## 3. Thứ tự ưu tiên triển khai
+
+| Mức ưu tiên | Chức năng | Lý do |
+|---|---|---|
+| P1 | Tùy chỉnh và lưu công thức | Gắn trực tiếp với quá trình gọi món |
+| P1 | Gọi món qua QR | Dễ trình diễn và có giá trị thực tế |
+| P1 | Quản lý nguyên liệu, cảnh báo tồn kho | Hỗ trợ nghiệp vụ quản lý quán |
+| P2 | Dự đoán thời gian chờ | Cần dữ liệu đơn hàng và thời gian pha chế |
+| P2 | Khách hàng thân thiết | Cần tài khoản, lịch sử mua hàng và quy tắc tích điểm |
+| P3 | Điểm thưởng xanh | Có thể bổ sung sau khi hệ thống chính ổn định |
+
+P1 là nhóm
