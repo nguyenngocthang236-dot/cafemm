@@ -1,0 +1,60 @@
+@{
+    var maBan = ViewData["MaBan"] as string;
+    // null = trang chưa có giỏ hàng (ví dụ chưa quét QR) -> ẩn nút giỏ hàng
+    var soLuongGio = ViewData["SoLuongGio"] as int?;
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#f3f5fa" />
+    <title>@ViewData["Title"] - binhminh</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@@400;500;600;700;800&amp;display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/khach.css" asp-append-version="true" />
+</head>
+<body data-anh-mac-dinh="@Url.Content("~/images/placeholder.svg")">
+
+    <header class="thanh-tren">
+        <div class="thanh-tren__trong">
+            <div class="thanh-tren__trai">
+                <a class="thuong-hieu" asp-controller="Menu" asp-action="Index">
+                    <svg viewBox="0 0 32 32" aria-hidden="true">
+                        <path d="M6 22a10 10 0 0 1 20 0z" fill="#ffc233" />
+                        <path d="M3 25.5h26M16 5v3M6.5 9l2 2M25.5 9l-2 2" fill="none" stroke="#1b2142" stroke-width="2.2" stroke-linecap="round" />
+                    </svg>
+                    <span>binhminh</span>
+                </a>
+                @if (!string.IsNullOrEmpty(maBan))
+                {
+                    <span class="the-ban">Bàn @maBan</span>
+                }
+            </div>
+
+            @if (soLuongGio.HasValue)
+            {
+                <a class="gio" asp-controller="GioHang" asp-action="Index">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M6 8h12l-1 12H7L6 8z" />
+                        <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+                    </svg>
+                    <span>Giỏ hàng</span>
+                    <span class="gio__so @(soLuongGio == 0 ? "gio__so--rong" : "")" data-gio-so>@soLuongGio</span>
+                </a>
+            }
+        </div>
+    </header>
+
+    @await RenderSectionAsync("Hero", required: false)
+
+    <main class="trang">
+        @RenderBody()
+    </main>
+
+    <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+    <script src="~/js/khach.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿@model QuanCafe.ViewModels.RevenueViewModel
+
+<div class="container mt-4">
+    <h4>📊 Doanh thu theo ngày</h4>
+
+    <!-- Bộ chọn ngày -->
+    <form method="get" class="d-flex align-items-center gap-3 mb-4">
+        <input type="date"
+               name="date"
+               class="form-control w-auto"
+               value="@Model.NgayXem.ToString("yyyy-MM-dd")" />
+        <button type="submit" class="btn btn-primary">Xem</button>
+    </form>
+
+    <!-- Tổng quan -->
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h6>Ngày xem</h6>
+                <h4>@Model.NgayXem.ToString("dd/MM/yyyy")</h4>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-3">
+                <h6>Số đơn hoàn tất</h6>
+                <h4>@Model.TongSoDon</h4>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center p-3 bg-success text-white">
+                <h6>Tổng doanh thu</h6>
+                <h4>@Model.TongDoanhThu.ToString("N0")đ</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chi tiết từng đơn -->
+    @if (!Model.DanhSachDon.Any())
+    {
+        <p class="text-muted">Không có đơn hoàn tất trong ngày này.</p>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Mã đơn</th>
+                    <th>Bàn</th>
+                    <th>Giờ</th>
+                    <th>Món đặt</th>
+                    <th class="text-end">Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var don in Model.DanhSachDon)
+                {
+                    <tr>
+                        <td>@don.MaDonHang</td>
+                        <td>@don.MaBan</td>
+                        <td>@don.ThoiGianDat.ToString("HH:mm")</td>
+                        <td>@string.Join(", ", don.DanhSachMon.Select(m => $"{m.TenSanPham} x{m.SoLuong}"))</td>
+                        <td class="text-end text-danger fw-bold">
+                            @don.TongTienDon.ToString("N0")đ
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr class="table-warning fw-bold">
+                    <td colspan="4" class="text-end">Tổng cộng:</td>
+                    <td class="text-end">@Model.TongDoanhThu.ToString("N0")đ</td>
+                </tr>
+            </tfoot>
+        </table>
+    }
+</div>

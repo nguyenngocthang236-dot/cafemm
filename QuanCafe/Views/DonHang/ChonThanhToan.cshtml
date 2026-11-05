@@ -1,0 +1,15 @@
+﻿<h3>Đơn @ViewBag.MaDon đã được ghi nhận!</h3>
+<p>Bạn muốn thanh toán ngay hay dùng xong mới thanh toán?</p>
+
+<form asp-action="ThanhToanNgay" asp-controller="ThanhToan" method="post">
+    <input type="hidden" name="maDon" value="@ViewBag.MaDon" />
+    <select name="hinhThuc">
+        <option value="tienmat">Tiền mặt</option>
+        <option value="chuyenkhoan">Chuyển khoản</option>
+        <option value="vidientu">Ví điện tử</option>
+    </select>
+    <button type="submit" class="btn btn-success">Thanh toán ngay</button>
+</form>
+
+<a class="btn btn-secondary" asp-action="TrangThai" asp-controller="DonHang"
+   asp-route-maDon="@ViewBag.MaDon">Để sau, xem trạng thái đơn</a>

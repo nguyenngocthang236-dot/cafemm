@@ -1,0 +1,1 @@
+Bo anh mon vao thu muc nay, dat dung ten file trong SQL/them-san-pham.sql (vi du: ca-phe-den.jpg).

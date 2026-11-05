@@ -1,0 +1,60 @@
+@model List<QuanCafe.Models.ViewModels.MonVoiSaleVm>
+@using QuanCafe.Helpers
+@{
+    ViewData["Title"] = "Thực đơn";
+    Layout = "_KhachLayout";
+}
+
+@section Hero {
+    <section class="hero">
+        <div class="hero__trong">
+            <h1 class="hero__tieu-de">Chào mừng đến với quán cafe nhóm binhminh</h1>
+            <p class="hero__phu">Chọn món, thêm vào giỏ hàng rồi đặt hàng. Quán sẽ mang đồ uống đến tận bàn của bạn.</p>
+        </div>
+        <div class="hero__mat-troi" aria-hidden="true"></div>
+    </section>
+}
+
+<div class="muc">
+    <h2 class="muc__ten">Thực đơn</h2>
+    <span class="muc__dem">@Model.Count món</span>
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="trong">
+        <p>Thực đơn đang được cập nhật. Bạn vui lòng quay lại sau ít phút.</p>
+    </div>
+}
+else
+{
+    <ul class="luoi-mon">
+        @foreach (var item in Model)
+        {
+            var sp = item.Mon;
+            <li>
+                <a class="mon" asp-action="ChiTiet" asp-route-id="@sp.Idsanpham">
+                    <span class="mon__anh vom">
+                        @if (item.DangSale)
+                        {
+                            <span class="mon__sale-badge">-@item.PhanTramGiam.ToString("0")%</span>
+                        }
+                        <img src="@Url.Content(sp.Hinhanh.DuongDanAnh())" alt="@sp.Tensanpham" loading="lazy" />
+                    </span>
+                    <span class="mon__ten">@sp.Tensanpham</span>
+                    @if (item.DangSale)
+                    {
+                        <span class="mon__gia-wrap">
+                            <span class="mon__gia-goc">@sp.Gia.Tien()</span>
+                            <span class="mon__gia mon__gia--sale">@item.GiaSale.Tien()</span>
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="mon__gia">@sp.Gia.Tien()</span>
+                    }
+                </a>
+            </li>
+        }
+    </ul>
+}

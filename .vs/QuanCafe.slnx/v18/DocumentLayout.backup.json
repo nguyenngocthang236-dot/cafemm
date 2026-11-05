@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|c:\\users\\lecon\\downloads\\quancafe_sale_v2\\quancafe\\quancafe\\controllers\\revenuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|solutionrelative:quancafe\\controllers\\revenuecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|c:\\users\\lecon\\downloads\\quancafe_sale_v2\\quancafe\\quancafe\\views\\quanly\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|solutionrelative:quancafe\\views\\quanly\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|c:\\users\\lecon\\downloads\\quancafe_sale_v2\\quancafe\\quancafe\\views\\revenue\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|solutionrelative:quancafe\\views\\revenue\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|c:\\users\\lecon\\downloads\\quancafe_sale_v2\\quancafe\\quancafe\\models\\revenueviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|solutionrelative:quancafe\\models\\revenueviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Views\\QuanLy\\Dashboard.cshtml",
+              "RelativeDocumentMoniker": "QuanCafe\\Views\\QuanLy\\Dashboard.cshtml",
+              "ToolTip": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Views\\QuanLy\\Dashboard.cshtml",
+              "RelativeToolTip": "QuanCafe\\Views\\QuanLy\\Dashboard.cshtml",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAQwIMAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-05T05:13:01.846Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Views\\Revenue\\Index.cshtml",
+              "RelativeDocumentMoniker": "QuanCafe\\Views\\Revenue\\Index.cshtml",
+              "ToolTip": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Views\\Revenue\\Index.cshtml",
+              "RelativeToolTip": "QuanCafe\\Views\\Revenue\\Index.cshtml",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAYwEsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-11-05T05:08:32.099Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RevenueViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Models\\RevenueViewModel.cs",
+              "RelativeDocumentMoniker": "QuanCafe\\Models\\RevenueViewModel.cs",
+              "ToolTip": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Models\\RevenueViewModel.cs",
+              "RelativeToolTip": "QuanCafe\\Models\\RevenueViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-05T05:03:12.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RevenueController.cs",
+              "DocumentMoniker": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Controllers\\RevenueController.cs",
+              "RelativeDocumentMoniker": "QuanCafe\\Controllers\\RevenueController.cs",
+              "ToolTip": "C:\\Users\\lecon\\Downloads\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\Controllers\\RevenueController.cs",
+              "RelativeToolTip": "QuanCafe\\Controllers\\RevenueController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAA5wDYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-05T05:00:20.581Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

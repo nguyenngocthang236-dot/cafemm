@@ -1,0 +1,67 @@
+@model Sanpham
+@using QuanCafe.Helpers
+@{
+    ViewData["Title"] = Model.Tensanpham;
+    Layout = "_KhachLayout";
+    decimal phanTramGiam = ViewBag.PhanTramGiam ?? 0m;
+    decimal giaSale = phanTramGiam > 0 ? Math.Round(Model.Gia * (1 - phanTramGiam / 100)) : Model.Gia;
+    bool dangSale = phanTramGiam > 0;
+}
+
+<section data-chi-tiet
+         data-id="@Model.Idsanpham"
+         data-ten="@Model.Tensanpham"
+         data-gia="@Convert.ToInt64(dangSale ? giaSale : Model.Gia)"
+         data-url-them="@Url.Action("Them", "GioHang")">
+
+    <a class="quay-lai" asp-action="Index">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+        Thực đơn
+    </a>
+
+    <h1 class="chi-tiet__ten">@Model.Tensanpham</h1>
+
+    <div class="chi-tiet__luoi">
+        @* Ảnh lớn: góc trên bên trái *@
+        <div class="chi-tiet__anh vom">
+            <img src="@Url.Content(Model.Hinhanh.DuongDanAnh())" alt="@Model.Tensanpham" />
+        </div>
+
+        <div class="chi-tiet__thong-tin">
+            @* Giá: góc trên bên phải. Số này nhân theo số lượng bằng JS *@
+            <div class="chi-tiet__gia-khung">
+                <div class="chi-tiet__gia" data-tong-gia>@(dangSale ? giaSale.Tien() : Model.Gia.Tien())</div>
+                @if (dangSale)
+                {
+                    <div class="chi-tiet__don-gia">
+                        <span class="chi-tiet__gia-goc">Giá gốc @Model.Gia.Tien()</span>
+                        &nbsp;–&nbsp;Giảm @phanTramGiam.ToString("0")%
+                    </div>
+                }
+                else
+                {
+                    <div class="chi-tiet__don-gia">Đơn giá @Model.Gia.Tien()</div>
+                }
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Mota))
+            {
+                <p class="chi-tiet__mota">@Model.Mota</p>
+            }
+
+            @* Số lượng + nút thêm giỏ hàng: phía dưới *@
+            <div class="chi-tiet__duoi">
+                <div class="so-luong">
+                    <span class="so-luong__nhan" id="nhan-so-luong">Số lượng</span>
+                    <div class="so-luong__dieu-khien" role="group" aria-labelledby="nhan-so-luong">
+                        <button type="button" class="so-luong__nut" data-tru aria-label="Giảm 1" disabled>−</button>
+                        <output class="so-luong__so" data-so-luong>1</output>
+                        <button type="button" class="so-luong__nut" data-cong aria-label="Tăng 1">+</button>
+                    </div>
+                </div>
+
+                <button type="button" class="nut nut--chinh nut--rong" data-them-gio>Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+    </div>
+</section>

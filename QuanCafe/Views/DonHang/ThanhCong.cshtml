@@ -1,0 +1,52 @@
+@model Donhang
+@using QuanCafe.Helpers
+@{
+    ViewData["Title"] = "Đặt hàng thành công";
+    Layout = "_KhachLayout";
+}
+
+<article class="ve">
+    <div class="ve__dau">
+        <div class="ve__tick">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+        </div>
+        <h1 class="ve__nhan">Đặt hàng thành công. Mã đơn của bạn là</h1>
+@if (TempData["Loi"] is string loi)
+{
+    <div class="alert alert-danger" role="alert">@loi</div>
+}
+@if (TempData["ThongBao"] is string thongBao)
+{
+    <div class="alert alert-success" role="status">@thongBao</div>
+}
+
+        <p class="ve__ma">@Model.Madonhang</p>
+        <p class="ve__nhan">Nhân viên sẽ giao đồ uống đến bàn @ViewData["MaBan"] đúng theo mã số này.</p>
+    </div>
+
+    <div class="ve__than">
+        <ul class="ve__ds">
+            @foreach (var ct in Model.Chitietdons)
+            {
+                <li>
+                    <span>@ct.Soluong x @ct.IdsanphamNavigation.Tensanpham</span>
+                    <span>@((ct.Dongia * ct.Soluong).Tien())</span>
+                </li>
+            }
+        </ul>
+
+        @if (!string.IsNullOrWhiteSpace(Model.Ghichu))
+        {
+            <p class="ve__ghi-chu">Ghi chú: @Model.Ghichu</p>
+        }
+
+        <div class="ve__tong">
+            <span>Tổng cộng</span>
+            <span>@Model.Tongtien.Tien()</span>
+        </div>
+    </div>
+
+    <div class="ve__chan">
+        <a class="nut nut--chinh nut--rong" asp-controller="Menu" asp-action="Index">Gọi thêm món</a>
+    </div>
+</article>

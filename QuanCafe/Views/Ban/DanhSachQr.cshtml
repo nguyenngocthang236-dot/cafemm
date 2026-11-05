@@ -1,0 +1,63 @@
+@model List<QuanCafe.Models.Ban>
+@{
+    // Trang quản lý riêng (không dùng _KhachLayout), có thể in ra giấy
+    Layout = null;
+    ViewData["Title"] = "Mã QR đặt món theo bàn";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/qr-ban.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="qr-dau no-print">
+        <div>
+            <h1>Mã QR đặt món theo bàn</h1>
+            <p>Khách quét mã dán trên bàn sẽ vào thẳng thực đơn, và nhân viên thấy đơn đó thuộc bàn nào.</p>
+        </div>
+        <a class="qr-lien-ket" href="@Url.Action("Dashboard", "QuanLy")">← Về trang quản lý</a>
+    </header>
+
+    <section class="qr-cau-hinh no-print">
+        <label for="dia-chi-goc">Địa chỉ website mà điện thoại của khách sẽ mở</label>
+        <div class="qr-cau-hinh__hang">
+            <input id="dia-chi-goc" type="text" inputmode="url" autocomplete="off" spellcheck="false"
+                   placeholder="Ví dụ: http://192.168.1.10:5213 hoặc https://quancafe.example.com" />
+            <button type="button" id="nut-tao-lai">Tạo lại mã QR</button>
+            <button type="button" id="nut-in" class="nut-phu">In tất cả</button>
+        </div>
+        <p class="qr-cau-hinh__goi-y">Mỗi mã QR sẽ trỏ tới <code>&lt;địa chỉ trên&gt;/Ban/Quet/&lt;số bàn&gt;</code>. Đổi địa chỉ rồi bấm "Tạo lại mã QR" là các mã đổi theo.</p>
+        <div id="canh-bao" class="qr-canh-bao" hidden></div>
+    </section>
+
+    <section class="qr-them-ban no-print">
+        <label for="ma-ban-moi">Thêm bàn mới</label>
+        <div class="qr-them-ban__hang">
+            <input id="ma-ban-moi" type="text" maxlength="20" placeholder="Mã bàn, ví dụ: B05" />
+            <button type="button" id="nut-them-ban">+ Thêm bàn</button>
+        </div>
+    </section>
+
+    <p class="qr-trong no-print" id="chua-co-ban" hidden>Chưa có bàn nào. Thêm bàn ở ô phía trên để bắt đầu tạo mã QR.</p>
+
+    <main class="qr-luoi" id="luoi-qr"></main>
+
+    <template id="mau-the-qr">
+        <article class="the-qr" data-idban="">
+            <button type="button" class="the-qr__xoa no-print" title="Xóa bàn này">×</button>
+            <div class="the-qr__tieu" data-ten-ban></div>
+            <div class="the-qr__ma" data-qr></div>
+            <div class="the-qr__chu">Quét mã để gọi món</div>
+            <a class="the-qr__url no-print" data-url target="_blank" rel="noopener"></a>
+        </article>
+    </template>
+
+    <script id="du-lieu-ban-ban-dau" type="application/json">@Json.Serialize(Model.Select(b => new { id = b.Idban, maBan = b.Maban }))</script>
+
+    <script src="~/lib/qrcode/qrcode.js" asp-append-version="true"></script>
+    <script src="~/js/qr-ban.js" asp-append-version="true"></script>
+</body>
+</html>
