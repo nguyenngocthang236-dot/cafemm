@@ -1,0 +1,88 @@
+@model QuanCafe.ViewModels.RevenueViewModel
+@{
+    // Trang quản lý riêng (không dùng _Layout mặc định), đồng bộ giao diện với trang Mã QR / Dashboard
+    Layout = null;
+    ViewData["Title"] = "Doanh thu theo ngày";
+}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/doanh-thu.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="dt-trang">
+        <header class="dt-dau">
+            <h1>📊 Doanh thu theo ngày</h1>
+            <a class="dt-lien-ket" href="@Url.Action("Dashboard", "QuanLy")">← Về trang quản lý</a>
+        </header>
+
+        <!-- Bộ chọn ngày -->
+        <form method="get" class="dt-loc">
+            <label for="dt-ngay">Chọn ngày xem doanh thu</label>
+            <div class="dt-loc__hang">
+                <input id="dt-ngay" type="date" name="date" value="@Model.NgayXem.ToString("yyyy-MM-dd")" />
+                <button type="submit">Xem</button>
+            </div>
+        </form>
+
+        <!-- Tổng quan -->
+        <div class="dt-tong-quan">
+            <div class="dt-the">
+                <h6>Ngày xem</h6>
+                <p class="dt-gia-tri">@Model.NgayXem.ToString("dd/MM/yyyy")</p>
+            </div>
+            <div class="dt-the">
+                <h6>Số đơn hoàn tất</h6>
+                <p class="dt-gia-tri">@Model.TongSoDon</p>
+            </div>
+            <div class="dt-the dt-the--doanh-thu">
+                <h6>Tổng doanh thu</h6>
+                <p class="dt-gia-tri">@Model.TongDoanhThu.ToString("N0")đ</p>
+            </div>
+        </div>
+
+        <!-- Chi tiết từng đơn -->
+        @if (!Model.DanhSachDon.Any())
+        {
+            <p class="dt-trong">Không có đơn hoàn tất trong ngày này.</p>
+        }
+        else
+        {
+            <div class="dt-bang-boc">
+                <table class="dt-bang">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Bàn</th>
+                            <th>Giờ</th>
+                            <th>Món đặt</th>
+                            <th class="dt-phai">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var don in Model.DanhSachDon)
+                        {
+                            <tr>
+                                <td>@don.MaDonHang</td>
+                                <td>@don.MaBan</td>
+                                <td>@don.ThoiGianDat.ToString("HH:mm")</td>
+                                <td class="dt-mon-dat">@string.Join(", ", don.DanhSachMon.Select(m => $"{m.TenSanPham} x{m.SoLuong}"))</td>
+                                <td class="dt-phai dt-thanh-tien">@don.TongTienDon.ToString("N0")đ</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4" class="dt-phai">Tổng cộng:</td>
+                            <td class="dt-phai">@Model.TongDoanhThu.ToString("N0")đ</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        }
+    </div>
+</body>
+</html>

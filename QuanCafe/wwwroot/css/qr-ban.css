@@ -1,0 +1,129 @@
+:root {
+  --navy: #1f2a44;
+  --cam: #e8833a;
+  --vien: #d9dce3;
+  --nen: #f4f5f8;
+  --chu-phu: #5b6478;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--nen);
+  color: var(--navy);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+code { background: #e9ebf2; padding: 1px 6px; border-radius: 6px; font-size: .9em; }
+
+.qr-dau { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 18px; }
+.qr-dau h1 { margin: 0 0 4px; font-size: 1.5rem; }
+.qr-dau p { margin: 0; color: var(--chu-phu); }
+.qr-lien-ket { color: var(--navy); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.qr-lien-ket:hover { text-decoration: underline; }
+
+.qr-cau-hinh { background: #fff; border: 1px solid var(--vien); border-radius: 14px; padding: 18px; margin-bottom: 22px; }
+.qr-cau-hinh label { display: block; font-weight: 700; margin-bottom: 8px; }
+.qr-cau-hinh__hang { display: flex; gap: 10px; flex-wrap: wrap; }
+.qr-cau-hinh input {
+  flex: 1 1 320px;
+  padding: 11px 14px;
+  border: 1.5px solid var(--vien);
+  border-radius: 12px;
+  font: inherit;
+}
+.qr-cau-hinh input:focus { outline: none; border-color: var(--cam); }
+.qr-cau-hinh button {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--navy);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.qr-cau-hinh button.nut-phu { background: #fff; color: var(--navy); border: 1.5px solid var(--navy); }
+.qr-cau-hinh button:hover { filter: brightness(1.15); }
+.qr-cau-hinh__goi-y { margin: 10px 0 0; color: var(--chu-phu); font-size: .9rem; }
+
+.qr-canh-bao {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #fff4e5;
+  border: 1px solid #f3c98b;
+  color: #7a4a05;
+  line-height: 1.5;
+}
+.qr-canh-bao[hidden] { display: none; }
+
+.qr-them-ban { background: #fff; border: 1px dashed var(--vien); border-radius: 14px; padding: 16px 18px; margin-bottom: 22px; }
+.qr-them-ban label { display: block; font-weight: 700; margin-bottom: 8px; }
+.qr-them-ban__hang { display: flex; gap: 10px; flex-wrap: wrap; }
+.qr-them-ban input {
+  padding: 11px 14px;
+  border: 1.5px solid var(--vien);
+  border-radius: 12px;
+  font: inherit;
+}
+.qr-them-ban input:focus { outline: none; border-color: var(--cam); }
+#ma-ban-moi { flex: 1 1 240px; }
+.qr-them-ban button {
+  padding: 11px 18px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--cam);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.qr-them-ban button:hover { filter: brightness(1.1); }
+.qr-them-ban button:disabled { opacity: .6; cursor: default; }
+
+.qr-trong { padding: 28px; text-align: center; color: var(--chu-phu); }
+
+.qr-luoi { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; }
+.the-qr {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--vien);
+  border-radius: 16px;
+  padding: 18px 16px 14px;
+  text-align: center;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+.the-qr__xoa {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--nen);
+  color: var(--chu-phu);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.the-qr__xoa:hover { background: #fbdada; color: #b42318; }
+.the-qr__tieu { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+.the-qr__ma { width: 100%; max-width: 220px; margin: 0 auto; }
+.the-qr__ma svg { display: block; width: 100%; height: auto; }
+.the-qr__chu { margin-top: 10px; font-weight: 600; color: var(--chu-phu); }
+.the-qr__url {
+  display: block;
+  margin-top: 8px;
+  font-size: .75rem;
+  color: var(--chu-phu);
+  word-break: break-all;
+}
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; padding: 0; }
+  .qr-luoi { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .the-qr { border: 1.5px solid #000; border-radius: 12px; }
+}

@@ -1,0 +1,45 @@
+@* ĐẶT VÀO: Views/Shared/_HoTroKhach.cshtml   (file mới)
+   Nút "viên thuốc" Hỗ trợ ở góc trên phải + khung chat ở giữa màn hình.
+   Được gọi từ _KhachLayout.cshtml (xem hướng dẫn thêm 3 dòng vào layout). *@
+@{
+    var maBan = ViewData["MaBan"] as string;
+}
+
+<button type="button" class="ho-tro-nut" data-ho-tro-nut
+        data-url-tin="@Url.Action("Tin", "HoTroKhach")"
+        data-url-gui="@Url.Action("Gui", "HoTroKhach")"
+        aria-haspopup="dialog" aria-label="Mở khung chat hỗ trợ">
+    <span class="ho-tro-nut__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.5-.75L3 20l1.07-4.17A8.5 8.5 0 1 1 21 11.5z" /><path d="M8.5 11.5h.01M12 11.5h.01M15.5 11.5h.01" /></svg>
+    </span>
+    <span class="ho-tro-nut__chu">Hỗ trợ</span>
+    <span class="ho-tro-nut__so" data-ho-tro-so hidden>0</span>
+</button>
+
+<div class="ho-tro-nen" data-ho-tro-nen hidden>
+    <div class="ho-tro-hop" role="dialog" aria-modal="true" aria-labelledby="ho-tro-tieu-de">
+        <div class="ho-tro-hop__dau">
+            <div>
+                <h2 id="ho-tro-tieu-de">Hỗ trợ</h2>
+                <p>@(string.IsNullOrEmpty(maBan) ? "Nhân viên" : "Bàn " + maBan + " · nhân viên") sẽ trả lời bạn tại đây</p>
+            </div>
+            <button type="button" class="ho-tro-hop__dong" data-ho-tro-dong aria-label="Đóng khung chat">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+        </div>
+
+        <div class="ho-tro-hop__tin" data-ho-tro-ds role="log" aria-live="polite">
+            <p class="ho-tro-hop__trong" data-ho-tro-trong>Chào bạn! Cần gì cứ nhắn ở đây, nhân viên sẽ trả lời ngay.</p>
+        </div>
+
+        <p class="ho-tro-hop__loi" data-ho-tro-loi hidden></p>
+
+        <form class="ho-tro-hop__form" data-ho-tro-form autocomplete="off">
+            <textarea class="ho-tro-hop__nhap" data-ho-tro-nhap rows="1" maxlength="500"
+                      placeholder="Nhập tin nhắn..." aria-label="Tin nhắn"></textarea>
+            <button type="submit" class="ho-tro-hop__gui" data-ho-tro-gui aria-label="Gửi">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4 20-7z" /></svg>
+            </button>
+        </form>
+    </div>
+</div>

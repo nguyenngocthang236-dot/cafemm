@@ -1,0 +1,35 @@
+@* ĐẶT VÀO: Views/QuanLy/_HoTroQuanLy.cshtml   (file mới)
+   Popup "Yêu cầu hỗ trợ" trên Dashboard: màn 1 = tất cả các bàn (có số tin chưa đọc),
+   màn 2 = khung chat với bàn được chọn. Nền xung quanh tối đi (dùng lại class .modal-nen / .modal có sẵn). *@
+
+<div class="modal-nen" id="modal-ho-tro" hidden>
+    <div class="modal modal--ho-tro" role="dialog" aria-modal="true" aria-labelledby="ho-tro-tieu-de">
+        <div class="modal__dau">
+            <div class="ho-tro-dau-trai">
+                <button type="button" class="modal__dong" id="nut-ho-tro-quay-lai" aria-label="Quay lại danh sách bàn" hidden>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+                </button>
+                <h2 id="ho-tro-tieu-de">Yêu cầu hỗ trợ</h2>
+            </div>
+            <button type="button" class="modal__dong" id="nut-dong-modal-ho-tro" aria-label="Đóng">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" /></svg>
+            </button>
+        </div>
+
+        <!-- Màn 1: tất cả các bàn -->
+        <div class="ho-tro-man" id="ho-tro-man-ban">
+            <p class="ho-tro-goi-y">Chọn bàn để xem và trả lời tin nhắn. Số đỏ là số tin của khách chưa được đọc.</p>
+            <div class="ho-tro-luoi" id="ho-tro-luoi"></div>
+        </div>
+
+        <!-- Màn 2: chat với một bàn -->
+        <div class="ho-tro-man" id="ho-tro-man-chat" hidden>
+            <div class="ho-tro-tin" id="ho-tro-tin" role="log" aria-live="polite"></div>
+            <p class="ho-tro-ghi-chu" id="ho-tro-ghi-chu" hidden></p>
+            <form class="ho-tro-form" id="ho-tro-form" autocomplete="off">
+                <textarea id="ho-tro-nhap" rows="1" maxlength="500" placeholder="Nhập tin nhắn trả lời khách..." aria-label="Tin nhắn"></textarea>
+                <button type="submit" class="ho-tro-gui" id="ho-tro-gui">Gửi</button>
+            </form>
+        </div>
+    </div>
+</div>

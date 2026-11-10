@@ -1,0 +1,23 @@
+﻿@model List<QuanCafe.Models.Sanpham>
+
+<h3>Chọn món</h3>
+<form asp-action="DatMon" asp-controller="DonHang" method="post">
+    <table class="table">
+        <thead><tr><th>Món</th><th>Giá</th><th>Số lượng</th></tr></thead>
+        <tbody>
+            @foreach (var sp in Model)
+            {
+                <tr>
+                    <td>
+                        @sp.Tensanpham
+                        <input type="hidden" name="idSanPhams" value="@sp.Idsanpham" />
+                    </td>
+                    <td>@sp.Gia.ToString("N0") đ</td>
+                    <td><input type="number" name="soLuongs" value="0" min="0" style="width:70px" /></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <textarea name="ghiChu" placeholder="Ghi chú (ít đá, không đường...)"></textarea>
+    <button type="submit" class="btn btn-primary">Đặt món</button>
+</form>

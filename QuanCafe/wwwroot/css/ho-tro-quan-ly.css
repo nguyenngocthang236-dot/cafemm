@@ -1,0 +1,160 @@
+/* =========================================================
+   ho-tro-quan-ly.css - Popup "Yêu cầu hỗ trợ" trên Dashboard
+   ĐẶT VÀO: wwwroot/css/ho-tro-quan-ly.css   (file mới)
+   Dùng lại biến màu trong dashboard.css: --navy --tim --vang-cam --xam-nhat --vien --trang --chu-phu --xanh-la --do
+   ========================================================= */
+
+/* ---------- Số nhỏ viền đỏ (tin chưa đọc) ---------- */
+.ho-tro-so {
+  position: absolute;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--do);
+  color: var(--do);
+  font-size: .6875rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+/* Trên nút "Yêu cầu hỗ trợ": nằm ở góc trên bên phải của biểu tượng */
+.nut-tac-vu > .ho-tro-so { top: 7px; left: 31px; }
+.nut-tac-vu > .ho-tro-so[hidden],
+#modal-ho-tro [hidden] { display: none !important; }
+
+/* ---------- Popup ---------- */
+.modal--ho-tro {
+  width: min(600px, 100%);
+  height: min(680px, calc(100vh - 64px));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;          /* cuộn bên trong từng màn, không cuộn cả popup */
+}
+.modal--ho-tro .modal__dau { flex: none; }
+.ho-tro-dau-trai { display: flex; align-items: center; gap: 12px; }
+
+.ho-tro-man { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+
+/* ---------- Màn 1: lưới các bàn ---------- */
+.ho-tro-goi-y { flex: none; margin: 0; padding: 16px 24px 4px; font-size: .875rem; color: var(--chu-phu); }
+.ho-tro-luoi {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  align-content: start;
+  gap: 16px;
+  padding: 16px 24px 24px;   /* chừa chỗ để số đỏ nhô ra ngoài góc ô không bị cắt */
+}
+.ho-tro-ban {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 16px 8px;
+  border: 1.5px solid var(--vien);
+  border-radius: var(--goc-vua);
+  background: var(--xam-nhat);
+  color: var(--navy);
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.ho-tro-ban:hover { transform: translateY(-2px); box-shadow: var(--bong); }
+.ho-tro-ban:focus-visible { outline: 3px solid var(--tim); outline-offset: 2px; }
+.ho-tro-ban__ma { font-size: 1.125rem; font-weight: 800; }
+.ho-tro-ban__tt { font-size: .8125rem; color: var(--chu-phu); }
+.ho-tro-ban--co-khach { background: var(--trang); border-color: var(--xanh-la); }
+.ho-tro-ban--co-khach .ho-tro-ban__tt { color: var(--xanh-la); font-weight: 600; }
+.ho-tro-ban .ho-tro-so { top: -8px; right: -8px; }
+
+/* ---------- Màn 2: khung chat ---------- */
+.ho-tro-tin {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 18px 22px;
+  background: var(--xam-nhat);
+}
+.ho-tro-hang { display: flex; }
+.ho-tro-hang--minh { justify-content: flex-end; }   /* tin của quản lý nằm bên phải, của khách bên trái */
+.ho-tro-bong {
+  max-width: 78%;
+  padding: 8px 13px 6px;
+  border-radius: 16px;
+  background: var(--trang);
+  border: 1px solid var(--vien);
+  border-bottom-left-radius: 4px;
+}
+.ho-tro-hang--minh .ho-tro-bong {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 4px;
+}
+.ho-tro-bong__nd { font-size: .9375rem; line-height: 1.45; white-space: pre-wrap; overflow-wrap: anywhere; }
+.ho-tro-bong__gio { margin-top: 2px; text-align: right; font-size: .6875rem; opacity: .6; }
+.ho-tro-trong { margin: auto; font-size: .9375rem; color: var(--chu-phu); text-align: center; }
+
+.ho-tro-ghi-chu {
+  flex: none;
+  margin: 0;
+  padding: 9px 22px;
+  border-top: 1px solid var(--vien);
+  background: var(--trang);
+  color: var(--chu-phu);
+  font-size: .875rem;
+}
+.ho-tro-ghi-chu--loi { background: #fdecef; color: #8f1d3c; }
+
+.ho-tro-form {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--vien);
+  background: var(--trang);
+}
+.ho-tro-form textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: 120px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--vien);
+  border-radius: 14px;
+  color: var(--navy);
+  font-family: inherit;
+  font-size: .9375rem;
+  line-height: 1.4;
+  resize: none;
+  outline: none;
+}
+.ho-tro-form textarea:focus { border-color: var(--tim); }
+.ho-tro-form textarea:disabled { background: var(--xam-nhat); cursor: not-allowed; }
+.ho-tro-gui {
+  flex: none;
+  height: 42px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-family: inherit;
+  font-size: .9375rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.ho-tro-gui:hover:not(:disabled) { filter: brightness(1.2); }
+.ho-tro-gui:disabled { opacity: .45; cursor: not-allowed; }

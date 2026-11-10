@@ -1,0 +1,106 @@
+@model Sanpham
+@using QuanCafe.Helpers
+@{
+    ViewData["Title"] = Model.Tensanpham;
+    Layout = "_KhachLayout";
+
+    // Giá sale (0 = không sale)
+    decimal phanTramGiam = ViewBag.PhanTramGiam ?? 0m;
+    bool dangSale = phanTramGiam > 0;
+    decimal giaSale = dangSale
+        ? Math.Round(Model.Gia * (1 - phanTramGiam / 100m), 0, MidpointRounding.AwayFromZero)
+        : Model.Gia;
+
+    // Tồn kho + giới hạn số lượng: khách được thêm bao nhiêu thì bằng số hàng đang có trong kho.
+    //   GioiHan = số hàng trong kho; ConLai = GioiHan - số ly món này đã có trong giỏ.
+    // Controller truyền ViewBag.GioiHan / ViewBag.ConLai (tên cũ ViewBag.ToiDaGoi cũng được đọc).
+    // Controller chưa truyền thì lấy thẳng tồn kho.
+    int ton = Model.Soluongton;
+    bool hetHang = ton <= 0;
+    int gioiHan = ViewBag.GioiHan ?? ton;
+    int conLai = ViewBag.ConLai ?? ViewBag.ToiDaGoi ?? gioiHan;
+    int daCo = ViewBag.DaCo ?? Math.Max(0, gioiHan - conLai);
+}
+
+<section data-chi-tiet
+         data-id="@Model.Idsanpham"
+         data-ten="@Model.Tensanpham"
+         data-gia="@Convert.ToInt64(dangSale ? giaSale : Model.Gia)"
+         data-url-them="@Url.Action("Them", "GioHang")"
+         data-gioi-han="@gioiHan"
+         data-con-lai="@conLai"
+         data-toi-da="@conLai"
+         data-da-co="@daCo">
+
+    <a class="quay-lai" asp-action="Index">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+        Thực đơn
+    </a>
+
+    <h1 class="chi-tiet__ten">@Model.Tensanpham</h1>
+
+    <div class="chi-tiet__luoi">
+        @* Ảnh lớn: góc trên bên trái *@
+        <div class="chi-tiet__anh vom">
+            <img src="@Url.Content(Model.Hinhanh.DuongDanAnh())" alt="@Model.Tensanpham" />
+        </div>
+
+        <div class="chi-tiet__thong-tin">
+            @* Giá: góc trên bên phải. Số này nhân theo số lượng bằng JS *@
+            <div class="chi-tiet__gia-khung">
+                <div class="chi-tiet__gia" data-tong-gia>@(dangSale ? giaSale.Tien() : Model.Gia.Tien())</div>
+                @if (dangSale)
+                {
+                    <div class="chi-tiet__don-gia">
+                        <span class="chi-tiet__gia-goc">Giá gốc @Model.Gia.Tien()</span>
+                        &nbsp;–&nbsp;Giảm @phanTramGiam.ToString("0")%
+                    </div>
+                }
+                else
+                {
+                    <div class="chi-tiet__don-gia">Đơn giá @Model.Gia.Tien()</div>
+                }
+            </div>
+
+            @if (hetHang)
+            {
+                <div class="chi-tiet__ton chi-tiet__ton--het" role="status">Món này đã hết hàng</div>
+            }
+            else if (ton <= KhoHang.SapHet)
+            {
+                <div class="chi-tiet__ton chi-tiet__ton--sap" role="status">Chỉ còn @ton</div>
+            }
+
+            @if (!string.IsNullOrWhiteSpace(Model.Mota))
+            {
+                <p class="chi-tiet__mota">@Model.Mota</p>
+            }
+
+            @* Số lượng + nút thêm giỏ hàng: phía dưới *@
+            <div class="chi-tiet__duoi">
+                @if (hetHang)
+                {
+                    <button type="button" class="nut nut--chinh nut--rong nut--het" disabled>Đã hết hàng</button>
+                }
+                else
+                {
+                    <div class="so-luong">
+                        <span class="so-luong__nhan" id="nhan-so-luong">Số lượng</span>
+                        <div class="so-luong__dieu-khien" role="group" aria-labelledby="nhan-so-luong">
+                            <button type="button" class="so-luong__nut" data-tru aria-label="Giảm 1" disabled>−</button>
+                            <input type="text" class="so-luong__so" data-so-luong value="1"
+                                   inputmode="numeric" pattern="[0-9]*" autocomplete="off" aria-label="Số lượng" />
+                            <button type="button" class="so-luong__nut" data-cong aria-label="Tăng 1">+</button>
+                        </div>
+                    </div>
+
+                    @* Ghi chú khi chạm giới hạn (hết tồn kho / đã có trong giỏ). JS điền nội dung.
+                       Mang cả data-ghi-chu và data-ghi-chu-ton để JS đọc theo tên nào cũng thấy. *@
+                    <p class="so-luong__ghi-chu" data-ghi-chu data-ghi-chu-ton hidden></p>
+
+                    <button type="button" class="nut nut--chinh nut--rong" data-them-gio>Thêm vào giỏ hàng</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>

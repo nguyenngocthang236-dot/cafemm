@@ -1,0 +1,238 @@
+/* =========================================================
+   ho-tro-khach.css - Nút "viên thuốc" Hỗ trợ + khung chat (giao diện khách)
+   ĐẶT VÀO: wwwroot/css/ho-tro-khach.css   (file mới)
+   Dùng lại biến màu trong khach.css: --muc --nang --suong --hong --tim --chu-nhat --vien --giay --font
+   ========================================================= */
+
+/* ---------- Nút viên thuốc: nửa tối có biểu tượng + nửa vàng có chữ ---------- */
+.ho-tro-nut {
+  position: fixed;
+  /* Điện thoại: nằm ngay dưới thanh trên (thanh trên đã chật chỗ) */
+  top: calc(66px + env(safe-area-inset-top, 0px));
+  right: 12px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: stretch;
+  height: 38px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--muc);
+  font-family: var(--font);
+  cursor: pointer;
+  filter: drop-shadow(0 3px 8px rgba(27, 33, 66, .25));
+  transition: transform .12s ease;
+}
+.ho-tro-nut:hover { transform: translateY(-1px); }
+.ho-tro-nut:active { transform: scale(.97); }
+.ho-tro-nut:focus-visible { outline: 3px solid var(--tim); outline-offset: 3px; }
+
+.ho-tro-nut__icon {
+  width: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px 0 0 999px;
+  background: var(--muc);
+  color: #fff;
+}
+.ho-tro-nut__icon svg { width: 20px; height: 20px; }
+.ho-tro-nut__chu {
+  display: grid;
+  place-items: center;
+  padding: 0 16px 0 12px;
+  border-radius: 0 999px 999px 0;
+  background: var(--nang);
+  font-size: .9375rem;
+  font-weight: 700;
+}
+
+/* Số tin nhân viên đã trả lời mà khách chưa xem */
+.ho-tro-nut__so {
+  position: absolute;
+  top: -6px;
+  right: -4px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--hong);
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: .6875rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+/* Màn hình từ 640px: nút nằm trong dải thanh trên, góc trên phải màn hình */
+@media (min-width: 640px) {
+  .ho-tro-nut { top: calc(10px + env(safe-area-inset-top, 0px)); right: 14px; }
+}
+/* Màn hình chưa đủ rộng để nút nằm ngoài khung nội dung -> chừa chỗ để không đè lên nút Giỏ hàng */
+@media (min-width: 640px) and (max-width: 1319px) {
+  .thanh-tren__trong { padding-right: 144px; }
+}
+
+/* ---------- Khung chat: ở giữa màn hình, xung quanh tối đi ---------- */
+.ho-tro-khoa { overflow: hidden; }
+
+.ho-tro-nen {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: rgba(27, 33, 66, .6);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+.ho-tro-nen[hidden],
+.ho-tro-nen [hidden],
+.ho-tro-nut [hidden] { display: none !important; }
+
+.ho-tro-hop {
+  width: min(420px, 100%);
+  height: min(640px, 100%);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--giay);
+  box-shadow: 0 24px 60px rgba(27, 33, 66, .35);
+  font-family: var(--font);
+  color: var(--muc);
+}
+
+.ho-tro-hop__dau {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 16px 14px 20px;
+  border-bottom: 1px solid var(--vien);
+}
+.ho-tro-hop__dau h2 { margin: 0; font-size: 1.125rem; font-weight: 800; line-height: 1.3; }
+.ho-tro-hop__dau p { margin: 2px 0 0; font-size: .8125rem; color: var(--chu-nhat); }
+
+.ho-tro-hop__dong {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--suong);
+  color: var(--muc);
+  cursor: pointer;
+}
+.ho-tro-hop__dong:hover { background: var(--vien); }
+.ho-tro-hop__dong:focus-visible { outline: 3px solid var(--tim); outline-offset: 2px; }
+.ho-tro-hop__dong svg { width: 18px; height: 18px; }
+
+/* Danh sách tin nhắn */
+.ho-tro-hop__tin {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: var(--suong);
+}
+.ho-tro-hop__trong {
+  margin: auto;
+  max-width: 260px;
+  text-align: center;
+  font-size: .9375rem;
+  color: var(--chu-nhat);
+}
+
+.ho-tro-hang { display: flex; }
+.ho-tro-hang--minh { justify-content: flex-end; }
+.ho-tro-bong {
+  max-width: 80%;
+  padding: 8px 13px 6px;
+  border-radius: 18px;
+  background: var(--giay);
+  border: 1px solid var(--vien);
+  border-bottom-left-radius: 5px;
+}
+.ho-tro-hang--minh .ho-tro-bong {
+  background: var(--muc);
+  border-color: var(--muc);
+  color: #fff;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 5px;
+}
+.ho-tro-bong__nd {
+  font-size: .9375rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.ho-tro-bong__gio {
+  margin-top: 2px;
+  text-align: right;
+  font-size: .6875rem;
+  opacity: .6;
+}
+
+/* Báo lỗi nhỏ phía trên ô nhập */
+.ho-tro-hop__loi {
+  flex: none;
+  margin: 0;
+  padding: 8px 18px;
+  background: #fdecef;
+  color: #8f1d3c;
+  font-size: .875rem;
+}
+
+/* Ô nhập + nút gửi */
+.ho-tro-hop__form {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--vien);
+  background: var(--giay);
+}
+.ho-tro-hop__nhap {
+  flex: 1;
+  min-width: 0;
+  max-height: 120px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--vien);
+  border-radius: 18px;
+  background: var(--giay);
+  color: var(--muc);
+  font-family: inherit;
+  font-size: 1rem;      /* >= 16px để iPhone không tự phóng to khi bấm vào ô */
+  line-height: 1.4;
+  resize: none;
+  outline: none;
+}
+.ho-tro-hop__nhap:focus { border-color: var(--tim); }
+.ho-tro-hop__gui {
+  flex: none;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: var(--nang);
+  color: var(--muc);
+  cursor: pointer;
+}
+.ho-tro-hop__gui:hover:not(:disabled) { background: #ffb700; }
+.ho-tro-hop__gui:disabled { opacity: .5; cursor: not-allowed; }
+.ho-tro-hop__gui:focus-visible { outline: 3px solid var(--tim); outline-offset: 2px; }
+.ho-tro-hop__gui svg { width: 20px; height: 20px; }

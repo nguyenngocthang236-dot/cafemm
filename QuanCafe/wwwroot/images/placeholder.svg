@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="500" viewBox="0 0 400 500" role="img" aria-label="Chưa có ảnh">
+  <rect width="400" height="500" fill="#e3e7f3"/>
+  <circle cx="200" cy="300" r="150" fill="#ffc233" opacity=".35"/>
+  <path d="M165 175c-14 18 14 28 0 48M200 165c-14 18 14 28 0 48M235 175c-14 18 14 28 0 48" fill="none" stroke="#433a85" stroke-width="8" stroke-linecap="round" opacity=".5"/>
+  <path d="M105 250h190v70a95 95 0 0 1-95 95 95 95 0 0 1-95-95z" fill="#1b2142"/>
+  <path d="M295 265h22a38 38 0 0 1 0 76h-30" fill="none" stroke="#1b2142" stroke-width="16" stroke-linecap="round"/>
+  <ellipse cx="200" cy="250" rx="95" ry="12" fill="#c2305f"/>
+  <rect x="85" y="420" width="230" height="14" rx="7" fill="#1b2142" opacity=".2"/>
+</svg>

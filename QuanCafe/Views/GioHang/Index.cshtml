@@ -1,0 +1,70 @@
+@model GioHangViewModel
+@using QuanCafe.Helpers
+@using QuanCafe.ViewModels
+@{
+    ViewData["Title"] = "Giỏ hàng";
+    Layout = "_KhachLayout";
+}
+
+<a class="quay-lai" asp-controller="Menu" asp-action="Index">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+    Tiếp tục chọn món
+</a>
+
+<h1 class="tieu-de-trang">Giỏ hàng của bạn</h1>
+
+@if (TempData["Canh"] is string canh)
+{
+    <div class="canh-bao" role="alert">@canh</div>
+}
+
+@if (Model.Dongs.Count == 0)
+{
+    <div class="trong">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 8h12l-1 12H7L6 8z" />
+            <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+        </svg>
+        <p>Giỏ hàng đang trống. Chọn vài món từ thực đơn để bắt đầu.</p>
+        <a class="nut nut--chinh" asp-controller="Menu" asp-action="Index">Xem thực đơn</a>
+    </div>
+}
+else
+{
+    <ul class="gio-ds">
+        @foreach (var d in Model.Dongs)
+        {
+            <li class="gio-dong">
+                <span class="gio-dong__anh vom">
+                    <img src="@Url.Content(d.Hinhanh.DuongDanAnh())" alt="" loading="lazy" />
+                </span>
+
+                <div>
+                    <div class="gio-dong__ten">@d.Tensanpham</div>
+                    <div class="gio-dong__chi-tiet">@d.Gia.Tien() x @d.Soluong</div>
+                </div>
+
+                <div class="gio-dong__phai">
+                    <span class="gio-dong__tien">@d.ThanhTien.Tien()</span>
+                    <form asp-action="Xoa" method="post">
+                        <input type="hidden" name="idSanPham" value="@d.Idsanpham" />
+                        <button type="submit" class="gio-xoa">Xóa</button>
+                    </form>
+                </div>
+            </li>
+        }
+    </ul>
+
+    <div class="gio-tong">
+        <div class="gio-tong__dong"><span>Tổng số món</span><span>@Model.TongSoLuong</span></div>
+        <div class="gio-tong__dong gio-tong__dong--lon"><span>Tổng cộng</span><span>@Model.TongTien.Tien()</span></div>
+    </div>
+
+    <form asp-action="DatHang" method="post" data-mot-lan>
+        <div class="ghi-chu">
+            <label for="ghiChu">Ghi chú cho quán (không bắt buộc)</label>
+            <textarea id="ghiChu" name="ghiChu" maxlength="200" placeholder="Ví dụ: ít đá, ít đường"></textarea>
+        </div>
+        <button type="submit" class="nut nut--chinh nut--rong">Đặt hàng</button>
+    </form>
+}

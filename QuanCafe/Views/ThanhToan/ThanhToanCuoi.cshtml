@@ -1,0 +1,34 @@
+@model List<QuanCafe.Models.Donhang>
+
+<h3>Xác nhận thanh toán</h3>
+@if (TempData["Loi"] is string loi)
+{
+    <div class="alert alert-danger" role="alert">@loi</div>
+}
+@if (TempData["ThongBao"] is string thongBao)
+{
+    <div class="alert alert-success" role="status">@thongBao</div>
+}
+@foreach (var don in Model)
+{
+    <div>
+        <b>@don.Madonhang</b>
+        <ul>
+            @foreach (var ct in don.Chitietdons)
+            {
+                <li>@ct.IdsanphamNavigation.Tensanpham x @ct.Soluong = @((ct.Dongia * ct.Soluong).ToString("N0")) đ</li>
+            }
+        </ul>
+    </div>
+}
+
+<h4>Tổng cộng: @(((decimal)ViewBag.TongTien).ToString("N0")) đ</h4>
+
+<form asp-action="XacNhanThanhToanCuoi" method="post">
+    <select name="hinhThuc">
+        <option value="tienmat">Tiền mặt</option>
+        <option value="chuyenkhoan">Chuyển khoản</option>
+        <option value="vidientu">Ví điện tử</option>
+    </select>
+    <button type="submit" class="btn btn-success">Xác nhận thanh toán</button>
+</form>

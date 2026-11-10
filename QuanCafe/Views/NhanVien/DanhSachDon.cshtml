@@ -1,0 +1,45 @@
+@model List<QuanCafe.Models.Donhang>
+
+<h3>Đơn đang xử lý</h3>
+@if (TempData["Loi"] is string loi)
+{
+    <div class="alert alert-danger" role="alert">@loi</div>
+}
+@if (TempData["ThongBao"] is string thongBao)
+{
+    <div class="alert alert-success" role="status">@thongBao</div>
+}
+@foreach (var don in Model)
+{
+    <div class="card mb-2 p-2">
+        <b>Bàn: @don.IdbanNavigation.Maban — Mã đơn: @don.Madonhang</b>
+        <span>Trạng thái: @don.Trangthai</span>
+        <ul>
+            @foreach (var ct in don.Chitietdons)
+            {
+                <li>
+                    @ct.IdsanphamNavigation.Tensanpham x @ct.Soluong — @ct.Trangthai
+                    @if (ct.Trangthai != "xong")
+                    {
+                        <form asp-action="CapNhatMon" method="post" style="display:inline">
+                            <input type="hidden" name="idChiTiet" value="@ct.Idchitiet" />
+                            <input type="hidden" name="trangThaiMoi"
+                                   value="@(ct.Trangthai == "cholam" ? "danglam" : "xong")" />
+                            <button class="btn btn-sm btn-outline-primary" type="submit">
+                                @(ct.Trangthai == "cholam" ? "Bắt đầu làm" : "Hoàn thành")
+                            </button>
+                        </form>
+                    }
+                </li>
+            }
+        </ul>
+
+        @if (don.Trangthai == "sansanggiao")
+        {
+            <form asp-action="XacNhanGiao" method="post">
+                <input type="hidden" name="idDonHang" value="@don.Idonhang" />
+                <button class="btn btn-success" type="submit">Đã giao cho khách</button>
+            </form>
+        }
+    </div>
+}

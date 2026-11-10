@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\lecon\\Downloads\\QuanCafe_cap_nhat_giao_dien_doanh_thu\\QuanCafee\\QuanCafe_sale_v2\\QuanCafe\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|c:\\users\\lecon\\downloads\\quancafe_cap_nhat_giao_dien_doanh_thu\\quancafee\\quancafe_sale_v2\\quancafe\\quancafe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0699FB5B-5EBD-D8C5-5F5A-9D224ED6DA0C}|QuanCafe\\QuanCafe.csproj|solutionrelative:quancafe\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\lecon\\Downloads\\QuanCafe_cap_nhat_giao_dien_doanh_thu\\QuanCafee\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\appsettings.json",
+              "RelativeDocumentMoniker": "QuanCafe\\appsettings.json",
+              "ToolTip": "C:\\Users\\lecon\\Downloads\\QuanCafe_cap_nhat_giao_dien_doanh_thu\\QuanCafee\\QuanCafe_sale_v2\\QuanCafe\\QuanCafe\\appsettings.json",
+              "RelativeToolTip": "QuanCafe\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-10T03:39:03.704Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+@model QuanCafe.Models.Donhang
+
+<meta http-equiv="refresh" content="5" />
+
+<h3>Mã đơn: @Model.Madonhang</h3>
+@if (TempData["Loi"] is string loi)
+{
+    <div class="alert alert-danger" role="alert">@loi</div>
+}
+@if (TempData["ThongBao"] is string thongBao)
+{
+    <div class="alert alert-success" role="status">@thongBao</div>
+}
+<p>Trạng thái đơn: <b>@(ViewBag.TrangThaiHienThi ?? Model.Trangthai)</b></p>
+<p>Thanh toán: <b>@Model.Trangthaithanhtoan</b></p>
+
+<ul>
+    @foreach (var ct in Model.Chitietdons)
+    {
+        <li>@ct.IdsanphamNavigation.Tensanpham x @ct.Soluong — @ct.Trangthai</li>
+    }
+</ul>
+
+@if (Model.Trangthaithanhtoan == "chuathanhtoan")
+{
+    <a class="btn btn-success" asp-action="ThanhToanCuoi" asp-controller="ThanhToan">
+        Dùng xong, thanh toán
+    </a>
+}
